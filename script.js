@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .sort((a, b) => b.value - a.value));
 
     focus = root;
-    let view = [focus.x, focus.y, focus.r * 2.5]; // zoomed out a bit more for better framing at init
+    let view = [focus.x, focus.y, focus.r * 3]; // zoomed out a bit more for better framing at init
 
     // circles
     const node = svg.append("g")
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const transition = svg.transition()
             .duration(750)
             .tween("zoom", () => {
-                const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
+                const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 3]);
                 return t => zoomTo(i(t));
             });
 
