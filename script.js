@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .attr("viewBox", `-${width / 2} -${height / 2} ${width} ${height}`)
         .attr("width", width)
         .attr("height", height)
-        .attr("style", `max-width: 100%; height: auto; display: block; margin: auto; background: hsl(152,80%,90%); cursor: pointer;`);
+        .attr("style", `max-width: 100%; height: auto; display: block; margin: auto; background: hsl(0, 0.00%, 100.00%); cursor: pointer;`);
 
     const tooltip = d3.select("#tooltip");
     let focus;
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Glass": "#9db4ff"          // Pastel Blue
     };
 
-    const opacityScale = d3.scaleLinear().domain([0.1, 0.6]).range([0.1, 1]);
+    const opacityScale = d3.scaleLinear().domain([0.1, 0.7]).range([0.1, 1]);
 
     // data structure
     const data = {
@@ -58,8 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .selectAll("circle")
         .data(root.descendants().slice(1)) // exclude root
         .join("circle")
-        .attr("fill", d => materialColors[d.data.name] || "#ffffff")
-        .attr("opacity", d => d.depth === 1 ? opacityScale(d.data.recyclingEfficiency || 0.8) : 1)
+        .attr("fill", d => materialColors[d.data.name] || "#000000")
+        .attr("opacity", d => d.depth === 1 ? opacityScale(d.data.recyclingEfficiency || 0.5) : 1)
         .attr("pointer-events", d => !d.children ? "none" : null)
         .on("mouseover", function () { d3.select(this).attr("stroke", "#000"); })
         .on("mouseout", function () { d3.select(this).attr("stroke", null); })
