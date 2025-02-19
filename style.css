@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+h1 {
+    margin-top: 20px;
+}
+.tooltip {
+    position: absolute;
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    display: none;
+    pointer-events: none;
+}
+/* button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+} */
+svg {
+    display: block;
+    margin: auto;
+}
