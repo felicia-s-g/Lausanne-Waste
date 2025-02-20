@@ -31,14 +31,20 @@ const opacityScale = d3.scaleLinear()
   .domain([0.82, 0.34])          // note: reversed
   .range(["#006d2c", "#edf8e9"]);
 
+
+const populationScale = d3.scaleLinear()
+  .domain([1000, 17000])          // note: reversed
+  .range([20, 100]);
+
 const data = await d3.json('data.json');
 console.log(data);
 function getDistrict(j) {
   for (const element of j) {
+    let ratioPop = populationScale(element.swiss + element.foreign);
     table += `
       <tr>
           <td>${element.name}</td>
-          <td><div class="bar" style="width: ${element.swiss_percentage}%;">${element.swiss + element.foreign}</div></td>
+          <td><div class="bar" style="width: ${ratioPop}%;">${element.swiss + element.foreign}</div></td>
       </tr>
     `
 
@@ -51,9 +57,11 @@ getDistrict(data.children);
 
 
 // hierarchy and layout
+
 const pack = d3.pack()
-  .size([width - 100, height - 100])
-  .padding(4);
+  .size([width, height])
+  .padding(10); // Parent nodes get more padding
+
 
 const root = pack(d3.hierarchy(data)
   .sum(d => d.value || d.waste_total)
