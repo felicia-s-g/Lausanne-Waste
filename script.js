@@ -146,7 +146,8 @@
     if (focus.depth === 1 && d.depth === 2) {
       return `
           <strong>${d.data.name}</strong><br/>
-          Value: ${d.data.value || "N/A"}
+          ${d.data.percentage} <br/>
+          ${d.data.value || "N/A"} kg
         `;
     }
 
