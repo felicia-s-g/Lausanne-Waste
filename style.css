@@ -1,5 +1,11 @@
+@font-face {
+    font-family: 'Agrandir';
+    src: url('PPAgrandir-Regular.woff2') format('truetype');
+    font-weight: 400;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Agrandir', sans-serif;
     text-align: center;
     background-color: #f4f4f4;
     margin: 0;
