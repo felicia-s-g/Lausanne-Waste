@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +8,29 @@
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1>Lausanne Waste Management & Demographics</h1>
     <div id="overlay">
         <h2>Demographic</h2>
         <div id="overlay-container" class="container">
-            <div class="city-list">
-                
+            <div id="demog">
+               
             </div>
-    
-            <div class="bar-chart">
-            
+            <div id="flex-bar" class="flex-bar">
+                
             </div>
         </div>
     </div>
-    <div id="legend"></div>
+    <div id="legend">
+
+    </div>
+
+    </div>
     <svg id="viz"></svg>
     <div class="tooltip" id="tooltip"></div>
-    
+
     <script type="module" src="script.js" defer></script>
 </body>
-</html>
 
+</html>
