@@ -141,7 +141,7 @@ function getSidebarContent1(d) {
           Population: ${d.data.swiss + d.data.foreign || "N/A"}<br/>
           Swiss: ${d.data.swiss || "N/A"}<br/>
           Non-Swiss: ${d.data.foreign || "N/A"}<br/>
-          Swiss percentage: ${d.data.swiss_percentage || "N/A"}
+          Swiss percentage: ${d.data.swiss_percentage || "N/A"} %
         `;
 }
 
@@ -173,7 +173,7 @@ function getTooltipContent(d) {
           Population: ${d.data.swiss + d.data.foreign || "N/A"}<br/>
           Swiss: ${d.data.swiss || "N/A"}<br/>
           Non-Swiss: ${d.data.foreign || "N/A"}<br/>
-          Swiss percentage: ${d.data.swiss_percentage || "N/A"}
+          Swiss percentage: ${d.data.swiss_percentage || "N/A"} %
         `;
   }
 
