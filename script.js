@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .attr("viewBox", `0 0 ${width} ${height}`)
       .attr("width", width)
       .attr("height", height)
-      .attr("style", `max-width: 100%; height: auto; display: block; margin: auto; background: hsl(152,80%,90%); cursor: pointer;`);
+      .attr("style", `max-width: 100%; height: auto; display: block; margin: auto; background: #f4f4f4; cursor: pointer;`);
+
   
   const tooltip = d3.select("#tooltip");
   
@@ -18,27 +19,31 @@ document.addEventListener("DOMContentLoaded", function () {
       "Glass": "#9db4ff"          // Pastel Blue
   };
   
-  const opacityScale = d3.scaleLinear().domain([0.1, 0.6]).range([0.1, 1]);
+    //const opacityScale = d3.scaleLinear().domain([0.1, 0.6]).range([0.1, 1]);
   
-  // Fake data structure
-  const data = {
-    name: "Lausanne",
-    children: Array.from({ length: 18 }, (_, i) => {
-      const recyclingEfficiency = Math.random() * 0.3 + 0.3;
-      return {
-        name: `District ${i + 1}`,
-        waste_total: Math.random() * 1000000 + 500000,
-        recyclingEfficiency,
-        children: [
-          { name: "Non-recyclable", value: Math.random() * 500000 },
-          { name: "Paper", value: Math.random() * 250000 },
-          { name: "Glass", value: Math.random() * 150000 },
-          { name: "Iron", value: Math.random() * 20000 },
-          { name: "Vegetable", value: Math.random() * 180000 },
-        ],
-      };
-    }),
-  };
+    const opacityScale = d3.scaleLinear()
+    .domain([0.82, 0.34])          // note: reversed
+    .range(["#006d2c", "#edf8e9"]);  
+
+    // Fake data structure
+    const data = {
+      name: "Lausanne",
+      children: Array.from({ length: 18 }, (_, i) => {
+        const recyclingEfficiency = Math.random() * 0.3 + 0.3;
+        return {
+          name: `District ${i + 1}`,
+          waste_total: Math.random() * 1000000 + 500000,
+          recyclingEfficiency,
+          children: [
+            { name: "Non-recyclable", value: Math.random() * 500000 },
+            { name: "Paper", value: Math.random() * 250000 },
+            { name: "Glass", value: Math.random() * 150000 },
+            { name: "Iron", value: Math.random() * 20000 },
+            { name: "Vegetable", value: Math.random() * 180000 },
+          ],
+        };
+      }),
+    };
   
   // FAKE placeholders for demographics and material values
   data.children.forEach((district) => {
@@ -107,17 +112,17 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   
-  // text labels
-  const label = svg.append("g")
-      .style("font", "14px sans-serif")
-      .attr("pointer-events", "none")
-      .attr("text-anchor", "middle")
-      .selectAll("text")
-      .data(root.descendants())
-      .join("text")
-      .style("fill-opacity", d => d.parent === root ? 1 : 0)
-      .style("display", d => d.parent === root ? "inline" : "none")
-      .text(d => d.data.name);
+    // text labels
+    const label = svg.append("g")
+        .style("font", "20px sans-serif")
+        .attr("pointer-events", "none")
+        .attr("text-anchor", "middle")
+        .selectAll("text")
+        .data(root.descendants())
+        .join("text")
+        .style("fill-opacity", d => d.parent === root ? 1 : 0)
+        .style("display", d => d.parent === root ? "inline" : "none")
+        .text(d => d.data.name);
 
   // Tooltip helper
   function getTooltipContent(d) {
