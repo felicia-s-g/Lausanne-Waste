@@ -77,7 +77,7 @@ const node = svg.append("g")
   .join("circle")
   .attr("fill", (d) => materialColors[d.data.name] || "#egegeg")
   .attr("stroke", (d) => d.children ? "white" : "none") // Apply stroke only to leaf nodes (outermost circles)
-  .attr("stroke-width", (d) => d.children ? d.data.recyclingEfficiency*2 : 0) // Apply stroke only to leaf nodes
+  .attr("stroke-width", (d) => d.children ? d.data.scaled_rec_efficiency_per_capita/7 : 0) // Apply stroke only to leaf nodes
   .attr("opacity", (d) =>
     d.depth === 1 ? opacityScale(d.data.recyclingEfficiency || 0.5) : 1
   )
