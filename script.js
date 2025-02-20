@@ -126,25 +126,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Tooltip helper
   function getTooltipContent(d) {
-    // Show district tooltips when zoomed out
-    if (d.depth === 1) {
+    // focus.depth === 0 => zoomed out (root)
+    // focus.depth === 1 => zoomed in on a district
+    // d.depth === 1 => district
+    // d.depth === 2 => material
+
+    // Zoomed out => show district tooltips only
+    if (focus.depth === 0 && d.depth === 1) {
       return `
-        <strong>${d.data.name}</strong><br/>
-        Population: ${d.data.fakePopulation || "N/A"}<br/>
-        Swiss: ${d.data.fakeSwiss || "N/A"}<br/>
-        Non-Swiss: ${d.data.fakeNonSwiss || "N/A"}
-      `;
+          <strong>${d.data.name}</strong><br/>
+          Population: ${d.data.swiss+d.data.foreign || "N/A"}<br/>
+          Swiss: ${d.data.swiss || "N/A"}<br/>
+          Non-Swiss: ${d.data.foreign || "N/A"}<br/>
+          Swiss percentage: ${d.data.swiss_percentage || "N/A"}
+        `;
     }
-    // Show waste type tooltips when zoomed in on a district
-    else if (d.depth === 2 && focus !== root) {
+
+    // Zoomed in on a district => show material tooltips only
+    if (focus.depth === 1 && d.depth === 2) {
       return `
-        <strong>${d.data.name}</strong><br/>
-        Value: ${d.value.toFixed(0)} kg
-      `;
+          <strong>${d.data.name}</strong><br/>
+          Value: ${d.data.value || "N/A"}
+        `;
     }
+
+    // Otherwise, no tooltip
     return "";
   }
-  
+
   // zooming
   svg.on("click", (event) => zoom(event, root));
   zoomTo(view);
