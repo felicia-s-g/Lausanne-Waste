@@ -47,7 +47,7 @@ g {
     width: 20%;
     height: 80%;
     background-color: rgb(211, 211, 237);
-    opacity: 0.3;
+    opacity: 0.6;
     position: absolute;
     top: 10%; /* Adjust as needed */
     right: 0; /* Aligns the div to the right side */

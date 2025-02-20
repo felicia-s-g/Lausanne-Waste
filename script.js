@@ -9,7 +9,9 @@
   
   const tooltip = d3.select("#tooltip");
   const overlayContainer = d3.select("#overlay-container");
-  
+  let level = true;
+  let labels = "";
+  let population = "";
   // colours
   const materialColors = {
       "Non-recyclable": "#d3d3d3", // Light Grey
@@ -26,6 +28,19 @@
     .range(["#006d2c", "#edf8e9"]);  
 
     const data = await d3.json('data.json');
+    console.log(data);
+    function getDistrict(j){
+      for (const element of j) {
+        console.log(element.name);
+        labels += `<li>${element.name}</li>`;
+        population += ` <div class="bar" style="width: 90%;">${element.swiss + element.foreign}</div>`
+      }
+    }
+
+getDistrict(data.children);
+console.log(labels);
+console.log(population);
+ 
     
   // hierarchy and layout
   const pack = d3.pack()
@@ -59,14 +74,9 @@
     })
     .on("mouseover", function (event, d) {
       const content = getTooltipContent(d);
-      const demo = getSidebarContent(d);
       if (content) {
         d3.select(this).attr("stroke", "#000");
         tooltip.style("display", "block").html(content);
-      }
-      if (demo) {
-        d3.select(this).attr("stroke", "#000");
-        overlayContainer.html(demo);
       }
     })
     .on("mousemove", function (event) {
@@ -81,11 +91,24 @@
     })
     .on("click", (event, d) => {
       // Only allow zooming if we're at root level and clicking on a district
+      console.log("UUUUUU");
       if (focus === root && d.depth === 1) {
         zoom(event, d);
         event.stopPropagation();
         console.log(d)
+
       }
+      if (level) {
+        const side = getSidebarContent1(d);
+        overlayContainer.html(side);
+        level = false;
+      }
+      else if (!level){
+        const side = getSidebarContent2(d);
+        overlayContainer.html(side);
+        level = true;
+      }
+
     });
   
     // text labels
@@ -103,8 +126,7 @@
 
 
   // sidebar helper
-  function getSidebarContent(d) {
-    if (focus.depth === 0 && d.depth === 1) {
+  function getSidebarContent1(d) {
       return `
           <strong>${d.data.name}</strong><br/>
           Population: ${d.data.swiss+d.data.foreign || "N/A"}<br/>
@@ -112,17 +134,23 @@
           Non-Swiss: ${d.data.foreign || "N/A"}<br/>
           Swiss percentage: ${d.data.swiss_percentage || "N/A"}
         `;
-    }
+  }      
 
-    // Zoomed in on a district => show material tooltips only
-    if (focus.depth === 1 && d.depth === 2) {
-      return `
-          
-        `;
-    }
-
-    // Otherwise, no tooltip
-    return console.log("outside?");
+  // sidebar helper
+  function getSidebarContent2(d) {
+      
+    
+    return `
+        <div class="city-list">
+                <ul>
+                    ${labels}
+                </ul>
+            </div>
+    
+            <div class="bar-chart">
+                ${population}
+            </div>
+      `;
   }      
   // Tooltip helper
   function getTooltipContent(d) {
@@ -174,9 +202,14 @@
     node.attr("pointer-events", function(d) {
       if (focus === root) {
         // When in root view, only districts have pointer events
+        console.log("root");
+        const side = getSidebarContent2(d);
+        overlayContainer.html(side);
+        level = true;
         return d.depth === 1 ? "all" : "none";
       } else {
         // When zoomed in, both districts and waste types have pointer events
+        console.log("notroot");
         return (d.depth === 1 || d.depth === 2) ? "all" : "none";
       }
     });
@@ -223,12 +256,12 @@
       let parentOffsetX = 0;
       if (d.parent) {
         if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
-          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -300 : 300) : 0;
         }
       }
       let offsetX = 0;
       if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
-        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
+        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -300 : 300) : 0;
       }
       return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1])})`;
     });
@@ -237,12 +270,12 @@
       let parentOffsetX = 0;
       if (d.parent) {
         if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
-          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -300 : 300) : 0;
         }
       }
       let offsetX = 0;
       if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
-        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
+        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -300 : 300) : 0;
       }
       return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1])})`;
     });
@@ -254,29 +287,29 @@
 
   function updateCirclePositions2() {
     node.transition().duration(500).attr("transform", d => {
-      let parentOffsetX = 0;
+      let parentOffsetX = 40;
       if (d.parent) {
         if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
-          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 40;
         }
       }
-      let offsetX = 0;
+      let offsetX = 40;
       if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
-        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
+        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 40;
       }
       return `translate(${(parentOffsetX + offsetX)}, ${(d.y - view[1])})`;
     });
 
     label.transition().duration(500).attr("transform", d => {
-      let parentOffsetX = 0;
+      let parentOffsetX = 40;
       if (d.parent) {
         if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
-          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 40;
         }
       }
-      let offsetX = 0;
+      let offsetX = 40;
       if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
-        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
+        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 40;
       }
       return `translate(${(parentOffsetX + offsetX)}, ${(d.y - view[1])})`;
     });
