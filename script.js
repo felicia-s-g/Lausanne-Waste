@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .attr("viewBox", `-${width / 2} -${height / 2} ${width} ${height}`)
     .attr("width", width)
     .attr("height", height)
-    .attr("style", `max-width: 100%; height: auto; display: block; margin: auto; background: hsl(152,80%,90%); cursor: pointer;`);
+    .attr("style", `max-width: 100%; height: auto; display: block; margin: auto; background: #f4f4f4; cursor: pointer;`);
 
 
   const tooltip = d3.select("#tooltip");
@@ -607,9 +607,9 @@ document.addEventListener("DOMContentLoaded", function () {
     .selectAll("circle")
     .data(root.descendants().slice(1)) // exclude root
     .join("circle")
-    .attr("fill", (d) => materialColors[d.data.name] || "#000000")
+    .attr("fill", (d) => materialColors[d.data.name] || opacityScale(d.data.recyclingEfficiency || 0.7))
     .attr("opacity", (d) =>
-      d.depth === 1 ? opacityScale(d.data.recyclingEfficiency || 0.5) : 1
+      d.depth === 1 ? opacityScale(d.data.recyclingEfficiency || 0.7) : 1
     )
 
     // Conditional pointer-event >>>>>>
@@ -647,7 +647,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // text labels
   const label = svg.append("g")
-    .style("font", "14px sans-serif")
+    .style("font", "20px sans-serif")
     .attr("pointer-events", "none")
     .attr("text-anchor", "middle")
     .selectAll("text")
