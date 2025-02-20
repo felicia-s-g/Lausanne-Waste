@@ -9,10 +9,33 @@
 </head>
 <body>
     <h1>Lausanne Waste Management & Demographics</h1>
+    <div id="overlay">
+        <h2>Demographic</h2>
+        <div id="overlay-container" class="container">
+            <div class="city-list">
+                <ul>
+                    <li>New York</li>
+                    <li>Los Angeles</li>
+                    <li>Chicago</li>
+                    <li>Houston</li>
+                    <li>Phoenix</li>
+                </ul>
+            </div>
+    
+            <div class="bar-chart">
+                <div class="bar" style="width: 90%;">New York</div>
+                <div class="bar" style="width: 75%;">Los Angeles</div>
+                <div class="bar" style="width: 60%;">Chicago</div>
+                <div class="bar" style="width: 50%;">Houston</div>
+                <div class="bar" style="width: 40%;">Phoenix</div>
+            </div>
+        </div>
+    </div>
+    <div id="legend"></div>
     <svg id="viz"></svg>
     <div class="tooltip" id="tooltip"></div>
     
-    <script src="script.js" defer></script>
+    <script type="module" src="script.js" defer></script>
 </body>
 </html>
 

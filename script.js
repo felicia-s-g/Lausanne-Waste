@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
   const width = window.innerWidth, height = window.innerHeight;
   
   const svg = d3.select("#viz")
@@ -9,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   
   const tooltip = d3.select("#tooltip");
+  const overlayContainer = d3.select("#overlay-container");
   
   // colours
   const materialColors = {
@@ -25,39 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
     .domain([0.82, 0.34])          // note: reversed
     .range(["#006d2c", "#edf8e9"]);  
 
-    // Fake data structure
-    const data = {
-      name: "Lausanne",
-      children: Array.from({ length: 18 }, (_, i) => {
-        const recyclingEfficiency = Math.random() * 0.3 + 0.3;
-        return {
-          name: `District ${i + 1}`,
-          waste_total: Math.random() * 1000000 + 500000,
-          recyclingEfficiency,
-          children: [
-            { name: "Non-recyclable", value: Math.random() * 500000 },
-            { name: "Paper", value: Math.random() * 250000 },
-            { name: "Glass", value: Math.random() * 150000 },
-            { name: "Iron", value: Math.random() * 20000 },
-            { name: "Vegetable", value: Math.random() * 180000 },
-          ],
-        };
-      }),
-    };
-  
-  // FAKE placeholders for demographics and material values
-  data.children.forEach((district) => {
-    const totalPop = Math.floor(Math.random() * 80000) + 5000;
-    const swissPop = Math.floor(totalPop * (Math.random() * 0.5 + 0.4));
-    district.fakePopulation = totalPop;
-    district.fakeSwiss = swissPop;
-    district.fakeNonSwiss = totalPop - swissPop;
-
-    district.children.forEach((mat) => {
-      mat.fakeValue = Math.floor(Math.random() * 200000);
-    });
-  });
-  
+    const data = await d3.json('data.json');
+    
   // hierarchy and layout
   const pack = d3.pack()
       .size([width - 100, height - 100])
@@ -90,9 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .on("mouseover", function (event, d) {
       const content = getTooltipContent(d);
+      const demo = getSidebarContent(d);
       if (content) {
         d3.select(this).attr("stroke", "#000");
         tooltip.style("display", "block").html(content);
+      }
+      if (demo) {
+        d3.select(this).attr("stroke", "#000");
+        overlayContainer.html(demo);
       }
     })
     .on("mousemove", function (event) {
@@ -103,12 +77,14 @@ document.addEventListener("DOMContentLoaded", function () {
     .on("mouseout", function () {
       d3.select(this).attr("stroke", null);
       tooltip.style("display", "none");
+      
     })
     .on("click", (event, d) => {
       // Only allow zooming if we're at root level and clicking on a district
       if (focus === root && d.depth === 1) {
         zoom(event, d);
         event.stopPropagation();
+        console.log(d)
       }
     });
   
@@ -124,6 +100,30 @@ document.addEventListener("DOMContentLoaded", function () {
         .style("display", d => d.parent === root ? "inline" : "none")
         .text(d => d.data.name);
 
+
+
+  // sidebar helper
+  function getSidebarContent(d) {
+    if (focus.depth === 0 && d.depth === 1) {
+      return `
+          <strong>${d.data.name}</strong><br/>
+          Population: ${d.data.swiss+d.data.foreign || "N/A"}<br/>
+          Swiss: ${d.data.swiss || "N/A"}<br/>
+          Non-Swiss: ${d.data.foreign || "N/A"}<br/>
+          Swiss percentage: ${d.data.swiss_percentage || "N/A"}
+        `;
+    }
+
+    // Zoomed in on a district => show material tooltips only
+    if (focus.depth === 1 && d.depth === 2) {
+      return `
+          
+        `;
+    }
+
+    // Otherwise, no tooltip
+    return console.log("outside?");
+  }      
   // Tooltip helper
   function getTooltipContent(d) {
     // focus.depth === 0 => zoomed out (root)
@@ -200,4 +200,84 @@ document.addEventListener("DOMContentLoaded", function () {
             if (d.parent !== focus) d3.select(this).style("display", "none");
         });
   }
-});
+
+
+  // Create the toggle button in HTML
+  const toggleButton = document.createElement("button");
+  toggleButton.textContent = "Toggle Population Influence";
+  toggleButton.style.position = "absolute";
+  toggleButton.style.top = "20px";
+  toggleButton.style.left = "20px";
+  toggleButton.style.zIndex = "10";
+  document.body.appendChild(toggleButton);
+
+  let moveCircles = false;
+
+  toggleButton.addEventListener("click", () => {
+    moveCircles = !moveCircles;
+    updateCirclePositions();
+  });
+
+  function updateCirclePositions() {
+    node.transition().duration(500).attr("transform", d => {
+      let parentOffsetX = 0;
+      if (d.parent) {
+        if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
+          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+        }
+      }
+      let offsetX = 0;
+      if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
+        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
+      }
+      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1])})`;
+    });
+
+    label.transition().duration(500).attr("transform", d => {
+      let parentOffsetX = 0;
+      if (d.parent) {
+        if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
+          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+        }
+      }
+      let offsetX = 0;
+      if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
+        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
+      }
+      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1])})`;
+    });
+  }
+
+  function getXPosition(percentage) {
+    return (percentage / 100) * 1200;
+}
+
+  function updateCirclePositions2() {
+    node.transition().duration(500).attr("transform", d => {
+      let parentOffsetX = 0;
+      if (d.parent) {
+        if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
+          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+        }
+      }
+      let offsetX = 0;
+      if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
+        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
+      }
+      return `translate(${(parentOffsetX + offsetX)}, ${(d.y - view[1])})`;
+    });
+
+    label.transition().duration(500).attr("transform", d => {
+      let parentOffsetX = 0;
+      if (d.parent) {
+        if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
+          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+        }
+      }
+      let offsetX = 0;
+      if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
+        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
+      }
+      return `translate(${(parentOffsetX + offsetX)}, ${(d.y - view[1])})`;
+    });
+  }
