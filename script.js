@@ -132,7 +132,7 @@ console.log(population);
           Population: ${d.data.swiss+d.data.foreign || "N/A"}<br/>
           Swiss: ${d.data.swiss || "N/A"}<br/>
           Non-Swiss: ${d.data.foreign || "N/A"}<br/>
-          Swiss percentage: ${d.data.swiss_percentage || "N/A"}
+          Swiss percentage: ${d.data.swiss_percentage || "N/A"} %
         `;
   }      
 
@@ -166,7 +166,7 @@ console.log(population);
           Population: ${d.data.swiss+d.data.foreign || "N/A"}<br/>
           Swiss: ${d.data.swiss || "N/A"}<br/>
           Non-Swiss: ${d.data.foreign || "N/A"}<br/>
-          Swiss percentage: ${d.data.swiss_percentage || "N/A"}
+          Swiss percentage: ${d.data.swiss_percentage || "N/A"} %
         `;
     }
 
