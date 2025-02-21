@@ -7,7 +7,7 @@ const toggleContainer = document.getElementById('toggle-container');
 const svg = d3.select("#viz")
   .attr("viewBox", `0 0 ${width} ${height}`)
   .attr("width", width)
-  .attr("height", height)
+  .attr("height", 900)
   .attr("style", `max-width: 100%; height: auto; display: block; margin: auto; background: #000; cursor: pointer;`);
 
 
@@ -58,15 +58,13 @@ function getDistrict(j) {
   for (const element of j) {
     let ratioPop = populationScale(element.swiss + element.foreign);
     table += `
-      <tr id="district-row-${element.id}">
-          <td>
+          <div id="district-row-${element.id}" class="district">
               <div class="district-name">${element.name}</div>
               <div class="bar-wrapper" style="display: flex; align-items: center;">
                   <div class="bar" style="width: ${ratioPop}%;">&nbsp;</div>
                   <div class="population" style="margin-left: 10px;">${element.swiss + element.foreign}</div>
               </div>
-          </td>
-      </tr>
+          </div>
     `;
 
     labels += `<li>${element.name}</li>`;
@@ -106,7 +104,7 @@ const node = svg.append("g")
     return materialColors[d.data.name] ;
   })
   .attr("stroke", (d) => d.children ? "rgb(0,255,0)" : "none") // Apply stroke only to leaf nodes (outermost circles)
-  .attr("stroke-width", (d) => d.children ? d.data.recycling_efficiency_per_capita*3 : 0) // Apply stroke only to leaf nodes
+  .attr("stroke-width", (d) => d.children ? d.data.recycling_efficiency_per_capita*4 : 0) // Apply stroke only to leaf nodes
   .attr("pointer-events", function (d) {
     if (focus === root) {
       // When in root view, only districts (depth === 1) have pointer events
