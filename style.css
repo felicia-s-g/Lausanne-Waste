@@ -331,3 +331,13 @@ th:last-child, td:last-child {
     background-color: yellow !important; /* Change bar color to blue */
     color: yellow;
   }
+
+
+  circle {
+    transition: filter 0.2s ease-in-out, stroke-width 0.s ease-in-out;
+  }
+  
+  circle:hover {
+    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.6)); /* Soft glow effect */
+    stroke-width: 4px !important; /* Slightly thicker stroke on hover */
+  }
