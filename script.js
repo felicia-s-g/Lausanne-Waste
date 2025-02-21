@@ -8,8 +8,7 @@ const svg = d3.select("#viz")
   .attr("viewBox", `0 0 ${width} ${height}`)
   .attr("width", width)
   .attr("height", 900)
-  .attr("style", `max-width: 100%; height: auto; display: block; margin: auto; background: #000; cursor: pointer;`);
-
+  .attr("style", `max-width: 100%; height: 88%; display: block; margin: auto; background: #000; cursor: pointer;`);
 
 
 const tooltip = d3.select("#tooltip");
@@ -79,14 +78,14 @@ getDistrict(data.children);
 
 const pack = d3.pack()
   .size([width, height])
-  .padding(d => d.depth === 0 ? 120 : 15) // this changes circle padding + inner circle padding
+  .padding(d => d.depth === 0 ? 125 : 15) // this changes circle padding + inner circle padding
 
 const root = pack(d3.hierarchy(data)
   .sum(d => d.value || d.waste_total)
   .sort((a, b) => b.value - a.value));
 
 focus = root;
-let view = [focus.x, focus.y, focus.r * 4.2];
+let view = [focus.x, focus.y, focus.r * 4];
 
 const effScale = d3.scaleLinear()
   .domain([0.4, 0.8])          // note: reversed
@@ -289,7 +288,7 @@ function zoom(event, d) {
   const transition = svg.transition()
     .duration(750)
     .tween("zoom", () => {
-      const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 4.2]);
+      const i = d3.interpolateZoom(view, [focus.x, focus.y - 6, focus.r * 3.8]);
       return t => zoomTo(i(t));
     });
 
@@ -329,6 +328,16 @@ function updateCirclePositions() {
 
       return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1])})`; // Shift up
     });
+
+  //   const pack = d3.pack()
+  //   .size([width, height])
+  //   .padding(d => d.depth === 0 ? 125 : 15) // this changes circle padding + inner circle padding
+  
+  // const root = pack(d3.hierarchy(data)
+  //   .sum(d => d.value || d.waste_total)
+  //   .sort((a, b) => b.value - a.value));
+  
+
 
   label.transition()
     .duration(d => Math.random() * 1000 + 500)
