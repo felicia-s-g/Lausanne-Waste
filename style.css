@@ -24,7 +24,7 @@ body {
 /* Outer White Frame */
 .container {
     width: 95vw;
-    height: 91vh;
+    height: 94vh;
     border: 1px solid white;
     display: flex;
     flex-direction: column;
@@ -120,7 +120,7 @@ g {
     position: absolute;
     top: 20%; /* Adjust as needed */
     left: 0; /* Aligns the div to the right side */
-    margin-left: 20px; /* Optional: adds some space from the right edge */
+    margin-left: 17px; /* Optional: adds some space from the right edge */
     pointer-events: none; /* Allows interactions with the SVG below */
     padding-left: 10px;
 }    
