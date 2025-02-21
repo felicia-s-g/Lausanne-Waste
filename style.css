@@ -131,14 +131,44 @@ g {
     right: 1%;
 }
 
+/* Sources - Positioned 20px Below Header & Responsive */
 #sources {
-    position: relative;
+    position: absolute;
+    top: calc(100% + 20px); /* Places it 20px below the header */
+    right: 2%;
     text-align: right;
-    bottom: 97%;
-    right: 1.5%;
     font-size: 10px;
     line-height: 150%;
-    padding-top: 30px;
+    max-width: 400px;
+}
+
+/* Medium Screens (1400px and below) */
+@media (max-width: 1400px) {
+    #sources {
+        font-size: 9px;
+        right: 1.5%;
+        max-width: 350px;
+    }
+}
+
+/* Small Screens (Tablets & Small Laptops) */
+@media (max-width: 1024px) {
+    #sources {
+        text-align: center;
+        right: 0;
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* Extra Small Screens (Phones) */
+@media (max-width: 768px) {
+    #sources {
+        text-align: center;
+        width: 100%;
+        font-size: 8px;
+        line-height: 140%;
+    }
 }
 
 a {
