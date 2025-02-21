@@ -90,6 +90,9 @@ const root = pack(d3.hierarchy(data)
 focus = root;
 let view = [focus.x, focus.y, focus.r * 4.2];
 
+const effScale = d3.scaleLinear()
+  .domain([0.4, 0.8])          // note: reversed
+  .range([0, 1]);
 
 // circles
 const node = svg.append("g")
@@ -106,7 +109,7 @@ const node = svg.append("g")
     return materialColors[d.data.name] ;
   })
   .attr("stroke", (d) => d.children ? "rgb(0,255,0)" : "none") // Apply stroke only to leaf nodes (outermost circles)
-  .attr("stroke-width", (d) => d.children ? d.data.recycling_efficiency_per_capita*3 : 0) // Apply stroke only to leaf nodes
+  .attr("stroke-width", (d) => d.children ? effScale(d.data.recycling_efficiency_per_capita) : 0) // Apply stroke only to leaf nodes
   .attr("pointer-events", function (d) {
     if (focus === root) {
       // When in root view, only districts (depth === 1) have pointer events
