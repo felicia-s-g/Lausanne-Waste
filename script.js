@@ -73,8 +73,7 @@ getDistrict(data.children);
 
 const pack = d3.pack()
   .size([width, height])
-  .padding(10); // Parent nodes get more padding
-
+  .padding(d => d.depth === 0 ? 150 : 5)
 
 const root = pack(d3.hierarchy(data)
   .sum(d => d.value || d.waste_total)
@@ -161,7 +160,6 @@ const node = svg.append("g")
   });
 
 const label = svg.append("g")
-  .style("font", "20px sans-serif")
   .attr("pointer-events", "none")
   .selectAll("text")
   .data(root.descendants().slice(1)) // Exclude root if needed
@@ -170,6 +168,7 @@ const label = svg.append("g")
   .style("fill-opacity", d => d.parent === root ? 1 : 0)
   .style("display", d => d.parent === root ? "inline" : "none")
   .style("fill", "white") // Improve visibility
+  .style("font", d => d.depth === 1 ? "10px sans-serif" : "20px sans-serif")  // Conditional font size based on depth
   .text(d => d.data.name);
 
 
@@ -243,15 +242,6 @@ function getTooltipContent(d) {
 // zooming
 svg.on("click", (event) => zoom(event, root));
 zoomTo(view);
-
-// function zoomTo(v) {
-//   const k = width / v[2];
-//   view = v;
-
-//   label.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
-//   node.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
-//   node.attr("r", d => d.r * k);
-// }
 
 function zoomTo(v) {
   const k = width / v[2];
