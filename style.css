@@ -199,3 +199,52 @@ th:last-child, td:last-child {
     background-color: #ffffff;
     opacity: 0.4;
 }
+
+.toggle-wrapper {
+    position: absolute;
+    bottom: 210px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10;
+}
+
+.toggle-label {
+    color: white;
+    font-size: 14px;
+    font-family: 'Agrandir', sans-serif;
+}
+
+.toggle-button {
+    position: relative;
+    width: 56px;
+    height: 32px;
+    background-color: #374151;
+    border-radius: 999px;
+    padding: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.toggle-button.active {
+    background-color: #2563eb;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 4px; /* Nuova proprietà per centrare il pallino verticalmente */
+    left: 4px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+}
+
+
+.toggle-button.active .toggle-slider {
+    transform: translateX(24px);
+}

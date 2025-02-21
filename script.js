@@ -305,20 +305,27 @@ function zoom(event, d) {
 }
 
 
-// Create the toggle button in HTML
+
+/*// Create the toggle button in HTML
 const toggleButton = document.createElement("button");
 toggleButton.textContent = "Toggle Population Influence";
 toggleButton.style.position = "absolute";
 toggleButton.style.top = "20px";
 toggleButton.style.left = "20px";
 toggleButton.style.zIndex = "10";
-document.body.appendChild(toggleButton);
+document.body.appendChild(toggleButton);*/
 
 let moveCircles = false;
 
-toggleButton.addEventListener("click", () => {
+/*toggleButton.addEventListener("click", () => {
   moveCircles = !moveCircles;
   updateCirclePositions();
+});*/
+const toggleButton = document.getElementById('populationToggle');
+toggleButton.addEventListener("click", function() {
+    this.classList.toggle('active');
+    moveCircles = !moveCircles;
+    updateCirclePositions();
 });
 
 function updateCirclePositions() {
