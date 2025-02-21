@@ -24,52 +24,70 @@ body {
 /* Outer White Frame */
 .container {
     width: 95vw;
-    height: 95vh;
-    border: 2px solid white;
+    height: 94vh;
+    border: 1px solid white;
     display: flex;
     flex-direction: column;
     position: relative;
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
 }
 
-/* Header Section with Vertical Dividers */
+/* Header Section with Proper Alignment & Dividers */
 .header {
     display: grid;
-    grid-template-columns: 3fr 2fr 2fr;
+    grid-template-columns: 3fr 10px 3fr 10px 1.5fr 10px 1.5fr; /* Wider space for H1 & H2 */
     align-items: center;
+    justify-content: center;
+    text-align: left;
     border-bottom: 1px solid white;
-    padding-bottom: 10px;
     position: relative;
+    height: auto;
 }
 
-/* Add vertical dividers */
-.header > *:not(:last-child) {
-    border-right: 1px solid white;
-    padding-right: 20px;
+.header-title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+    font-size: 18px;
 }
 
-/* Header Text Alignment */
-.header-text {
+.header-subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     padding-left: 20px;
+    font-size: 13px;
+    max-width: 50ch;
 }
 
-.header-text h1 {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.header-text h2 {
-    font-size: 16px;
-    margin-top: 10px;
-    line-height: 1.5;
-}
-
-/* Course & Author Info */
-.course-info, .authors {
+.course-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     text-align: right;
-    font-size: 12px;
+    padding-right: 20px;
+    font-size: 13px;
     line-height: 1.5;
-    padding-left: 20px;
+}
+
+.authors {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* White Vertical Divider Lines */
+.header-divider {
+    width: 1px;
+    height: calc(100% - 40px); /* Adds 20px padding from both top & bottom */
+    background-color: white;
+    align-self: center;
 }
 
 .tooltip {
@@ -100,9 +118,9 @@ g {
     /* background-color: rgb(211, 211, 237);
     opacity: 0.6; */
     position: absolute;
-    top: 30%; /* Adjust as needed */
+    top: 20%; /* Adjust as needed */
     left: 0; /* Aligns the div to the right side */
-    margin-left: 20px; /* Optional: adds some space from the right edge */
+    margin-left: 17px; /* Optional: adds some space from the right edge */
     pointer-events: none; /* Allows interactions with the SVG below */
 }    
 
@@ -116,10 +134,11 @@ g {
 #sources {
     position: absolute;
     text-align: right;
-    top: 20%;
-    right: 2.5%;
+    top: 17%;
+    right: 1.5%;
     font-size: 10px;
     line-height: 150%;
+    padding-top: 30px;
 }
 
 a {
@@ -190,46 +209,51 @@ th:last-child, td:last-child {
     opacity: 0.4;
 }
 
-.district-name {
-    height: 20px;
-    flex-shrink: 0;
-    color: #FFF;
-    font-family: "PP Agrandir";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+.toggle-wrapper {
+    position: absolute;
+    bottom: 210px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10;
 }
 
-  .bar {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    text-align: right;
-    padding: 5px;
-    margin: 10px 0;
-    width: 154px;
-    height: 2px;
-    border-radius: 4px;
-    border: 1px solid #FFF;
-
+.toggle-label {
+    color: white;
+    font-size: 14px;
+    font-family: 'Agrandir', sans-serif;
 }
 
-.population {
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 6px 3px 25px 0px rgba(255, 255, 255, 0.10) inset;
-    filter: drop-shadow(3px 4px 7px rgba(51, 51, 51, 0.10));
-    padding: 10px 5px;
-    border-radius: 5px;
-    text-align: center;
-    min-width: 50px;
-    display: inline-block;
-    color: #FFF;
-    font-family: "PP Agrandir";
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    width: 40px;
-    height: 12px;
-    flex-shrink: 0;
+.toggle-button {
+    position: relative;
+    width: 56px;
+    height: 32px;
+    background-color: #374151;
+    border-radius: 999px;
+    padding: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.toggle-button.active {
+    background-color: #2563eb;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 4px; /* Nuova proprietà per centrare il pallino verticalmente */
+    left: 4px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+}
+
+
+.toggle-button.active .toggle-slider {
+    transform: translateX(24px);
 }

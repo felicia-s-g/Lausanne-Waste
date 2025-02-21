@@ -88,8 +88,6 @@ focus = root;
 let view = [focus.x, focus.y, focus.r * 4.2];
 
 
-
-
 // circles
 const node = svg.append("g")
   .selectAll("circle")
@@ -104,7 +102,7 @@ const node = svg.append("g")
     // Default fill for other levels (use material colors)
     return materialColors[d.data.name] ;
   })
-  .attr("stroke", (d) => d.children ? "rgb(0,255,0)" : "none") // Apply stroke only to leaf nodes (outermost circles)
+  .attr("stroke", (d) => d.children ? "rgb(255,255,255)" : "none") // Apply stroke only to leaf nodes (outermost circles)
   .attr("stroke-width", (d) => d.children ? d.data.scaled_rec_efficiency_per_capita / 5 : 0) // Apply stroke only to leaf nodes
   .attr("pointer-events", function (d) {
     if (focus === root) {
