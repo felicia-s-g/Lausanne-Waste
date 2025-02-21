@@ -36,12 +36,14 @@ function highlightDistrict(districtId, highlight = true) {
   const row = document.querySelector(`#district-row-${districtId}`);
   if (row) {
     if (highlight) {
-      row.classList.add('highlighted');
+      row.classList.add('blue-theme');
     } else {
-      row.classList.remove('highlighted');
+      row.classList.remove('blue-theme');
     }
   }
 }
+
+
 
 const opacityScale = d3.scaleLinear()
   .domain([60, 230])          // note: reversed
@@ -106,7 +108,7 @@ const node = svg.append("g")
     // Default fill for other levels (use material colors)
     return materialColors[d.data.name] ;
   })
-  .attr("stroke", (d) => d.children ? "rgb(0,255,0)" : "none") // Apply stroke only to leaf nodes (outermost circles)
+  .attr("stroke", (d) => d.children ? "rgb(255,255,255)" : "none") // Apply stroke only to leaf nodes (outermost circles)
   .attr("stroke-width", (d) => d.children ? effScale(d.data.recycling_efficiency_per_capita)*3 : 0) // Apply stroke only to leaf nodes
   .attr("pointer-events", function (d) {
     if (focus === root) {
@@ -188,7 +190,7 @@ const label = svg.append("g")
 // sidebar helper
 function getSidebarContent1(d) {
   return `
-          <strong>${d.data.name}</strong><br/>
+          <h3>${d.data.name}</h3>
           Population: ${d.data.swiss + d.data.foreign || "N/A"}<br/>
           Swiss: ${d.data.swiss || "N/A"}<br/>
           Non-Swiss: ${d.data.foreign || "N/A"}<br/>
@@ -260,13 +262,10 @@ function zoomTo(v) {
   const k = width / v[2];
   view = v;
 
-  node.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
+  node.attr("transform", d => `translate(${(d.x - v[0]) * k}, ${(d.y - v[1]) * k - 60})`); // Shift up by 100px
   node.attr("r", d => d.r * k);
 
-  // Move labels to the top of each circle
-  label.attr("transform", d => 
-    `translate(${(d.x - v[0]) * k}, ${(d.y - v[1]) * k - d.r * k - 10})`
-  );
+  label.attr("transform", d => `translate(${(d.x - v[0]) * k}, ${(d.y - v[1]) * k - d.r * k - 80})`); // Shift labels accordingly
 }
 
 function zoom(event, d) {
@@ -318,47 +317,34 @@ toggleButton.addEventListener("click", function() {
 });
 
 function updateCirclePositions() {
-  // First, we compute the new position (but keep the radius as defined by d3.pack)
   node.transition()
-    .duration(d => Math.random() * 1000 + 500) // Random duration between 500ms and 1500ms
-    .delay(d => Math.random() * 500) // Random delay between 0 and 500ms
+    .duration(d => Math.random() * 1000 + 500)
+    .delay(d => Math.random() * 500)
     .attr("transform", d => {
-      let parentOffsetX = 0;
-      if (d.parent) {
-        if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
-          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
-        }
+      let parentOffsetX = 0, offsetX = 0;
+      if (d.parent && d.parent.data.swiss !== undefined) {
+        parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
       }
-      let offsetX = 0;
-      if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
+      if (d.data.swiss !== undefined) {
         offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
       }
 
-      // Use the original radius defined by d3.pack()
-      let r = d.r; // Retain the original radius set by d3.pack()
-
-      // Update only the position of the circles (not the radius)
-      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1])})`;
+      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1]) - 25})`; // Shift up
     });
 
-  // Move labels with random duration & delay per label
   label.transition()
-    .duration(d => Math.random() * 1000 + 500) // Random duration between 500ms and 1500ms
-    .delay(d => Math.random() * 500) // Random delay between 0 and 500ms
+    .duration(d => Math.random() * 1000 + 500)
+    .delay(d => Math.random() * 500)
     .attr("transform", d => {
-      let parentOffsetX = 0;
-      if (d.parent) {
-        if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
-          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
-        }
+      let parentOffsetX = 0, offsetX = 0;
+      if (d.parent && d.parent.data.swiss !== undefined) {
+        parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
       }
-      let offsetX = 0;
-      if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
+      if (d.data.swiss !== undefined) {
         offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
       }
 
-      // Adjust label position but keep the original radius
-      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1]) - d.r - 6})`;
+      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1]) - d.r - 40})`; // Shift up
     });
 }
 
