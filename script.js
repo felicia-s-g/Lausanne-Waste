@@ -1,5 +1,6 @@
 const width = window.innerWidth, height = window.innerHeight;
 
+
 const svg = d3.select("#viz")
   .attr("viewBox", `0 0 ${width} ${height}`)
   .attr("width", width)
@@ -70,6 +71,9 @@ const root = pack(d3.hierarchy(data)
 focus = root;
 let view = [focus.x, focus.y, focus.r * 4.2];
 
+
+
+
 // circles
 const node = svg.append("g")
   .selectAll("circle")
@@ -106,26 +110,30 @@ const node = svg.append("g")
 
   })
   .on("click", (event, d) => {
-    // Only allow zooming if we're at root level and clicking on a district
-    if (focus === root && d.depth === 1) {
-      zoom(event, d);
-      event.stopPropagation();
-      console.log(d)
+    // Zoom logic: Only allow zooming if clicking on a district (depth 1) or material (depth 2)
 
-    }
-    if (level) {
-      const side = getSidebarContent1(d);
+    zoom(event, d);
+      event.stopPropagation();
+    // Check if you are at the root level or district level
+    if (focus === root) {
+      // If at the root level, show sidebar content for root level (getSidebarContent1)
+      const side = getSidebarContent2(d);
       demog.html(side);
       flexBar.html("");
       level = false;
-    }
-    else if (!level) {
-      const side = getSidebarContent2(d);
+    } else if (focus.depth === 1) {
+      // If at the district level, show sidebar content for district (getSidebarContent2)
+      const side = getSidebarContent1(d);
+      demog.html("");
+      flexBar.html(side);
+      level = true;
+    } else if (focus.depth === 2) {
+      // If at the district level, show sidebar content for district (getSidebarContent2)
+      const side = getSidebarContent3(d);
       demog.html("");
       flexBar.html(side);
       level = true;
     }
-
   });
 
 const label = svg.append("g")
@@ -164,6 +172,17 @@ function getSidebarContent2(d) {
                 </tbody>
             </table>
         </div>
+      `;
+}
+
+// sidebar helper
+function getSidebarContent3(d) {
+
+
+  return `
+         <strong>${d.data.name}</strong><br/>
+          Population: ${d.data.percentage || "N/A"}<br/>
+          Swiss: ${d.data.value || "N/A"}
       `;
 }
 // Tooltip helper
