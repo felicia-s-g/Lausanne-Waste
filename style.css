@@ -60,7 +60,7 @@ body {
     justify-content: flex-start;
     padding-left: 20px;
     font-size: 13px;
-    max-width: 45ch;
+    max-width: 50ch;
 }
 
 .course-info {
@@ -132,16 +132,26 @@ g {
 }
 
 /* Sources - Positioned 20px Below Header & Responsive */
-#sources {
-    position: relative;
-    top: 1%;
-    padding-right: 20px;
+/* #sources {
+    position: absolute;
+    top: calc(100% + 20px); /* Places it 20px below the header */
+    /* right: 2%;
     text-align: right;
-    font-size: 11px;
+    font-size: 10px;
     line-height: 150%;
     max-width: 400px;
-    left: 74.5%;
-}
+} */
+
+#sources {
+    position: relative;
+     top: 1%;
+     padding-right: 20px;
+     text-align: right;
+     font-size: 11px;
+     line-height: 150%;
+     max-width: 400px;
+     left: 74.5%;
+ }
 
 a {
     color: white;
