@@ -1,5 +1,8 @@
 const width = window.innerWidth, height = window.innerHeight;
 
+const toggleButton = document.getElementById('populationToggle');
+const toggleContainer = document.getElementById('toggle-container');
+
 
 const svg = d3.select("#viz")
   .attr("viewBox", `0 0 ${width} ${height}`)
@@ -134,29 +137,35 @@ const node = svg.append("g")
   })
   .on("click", (event, d) => {
     // Zoom logic: Only allow zooming if clicking on a district (depth 1) or material (depth 2)
-
-    zoom(event, d);
+    if(d.depth === 1){
+      zoom(event, d);
       event.stopPropagation();
+    }
     // Check if you are at the root level or district level
     if (focus === root) {
+      console.log("qui");
       // If at the root level, show sidebar content for root level (getSidebarContent1)
       const side = getSidebarContent2(d);
       demog.html(side);
       flexBar.html("");
       level = false;
-    } else if (focus.depth === 1) {
+      } else if (focus.depth === 1) {
+        console.log("qua");
       // If at the district level, show sidebar content for district (getSidebarContent2)
       const side = getSidebarContent1(d);
       demog.html("");
       flexBar.html(side);
       level = true;
-    } else if (focus.depth === 2) {
-      // If at the district level, show sidebar content for district (getSidebarContent2)
-      const side = getSidebarContent3(d);
-      demog.html("");
-      flexBar.html(side);
-      level = true;
-    }
+
+      toggleContainer.style.display = "none";
+      }
+    // else if (focus.depth === 2) {
+    //   // If at the district level, show sidebar content for district (getSidebarContent2)
+    //   const side = getSidebarContent3(d);
+    //   demog.html("");
+    //   flexBar.html(side);
+    //   level = true;
+    // }
   });
 
 const label = svg.append("g")
@@ -267,6 +276,8 @@ function zoom(event, d) {
       demog.html("");
       flexBar.html(side);
       level = true;
+
+      toggleContainer.style.display = "flex";
       return d.depth === 1 ? "all" : "none";
     } else {
       // When zoomed in, both districts and waste types have pointer events
@@ -311,7 +322,6 @@ let moveCircles = false;
   moveCircles = !moveCircles;
   updateCirclePositions();
 });*/
-const toggleButton = document.getElementById('populationToggle');
 toggleButton.addEventListener("click", function() {
     this.classList.toggle('active');
     moveCircles = !moveCircles;
@@ -319,7 +329,7 @@ toggleButton.addEventListener("click", function() {
 });
 
 function updateCirclePositions() {
-  // First, we compute the new radius based on the scale and any layout adjustment
+  // First, we compute the new position (but keep the radius as defined by d3.pack)
   node.transition()
     .duration(d => Math.random() * 1000 + 500) // Random duration between 500ms and 1500ms
     .delay(d => Math.random() * 500) // Random delay between 0 and 500ms
@@ -335,16 +345,14 @@ function updateCirclePositions() {
         offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
       }
 
-      // Update radius (r) with padding and move it accordingly
-      let r = d.r;
-      if (moveCircles) {
-        // Recalculate radius based on the new condition (can adjust this further if needed)
-        r = d.r * 1.2; // Example of increasing radius when moveCircles is true
-      }
+      // Use the original radius defined by d3.pack()
+      let r = d.r; // Retain the original radius set by d3.pack()
+
+      // Update only the position of the circles (not the radius)
       return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1])})`;
     });
 
-  // Move labels (random duration & delay per label)
+  // Move labels with random duration & delay per label
   label.transition()
     .duration(d => Math.random() * 1000 + 500) // Random duration between 500ms and 1500ms
     .delay(d => Math.random() * 500) // Random delay between 0 and 500ms
@@ -359,7 +367,9 @@ function updateCirclePositions() {
       if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
         offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
       }
-      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1]) - d.r})`;
+
+      // Adjust label position but keep the original radius
+      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1]) - d.r - 6})`;
     });
 }
 
