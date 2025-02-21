@@ -1,0 +1,905 @@
+{
+  "name": "Lausanne",
+  "children": [
+    {
+      "id": 1,
+      "name": "Centre",
+      "waste_total": 2974399,
+      "waste_per_capita": 227.47,
+      "recyclingEfficiency": 0.35,
+      "recycling_efficiency_per_capita": 0.41,
+      "swiss": 7087,
+      "foreign": 5989,
+      "swiss_percentage": 54.2,
+      "men_swiss": 3431,
+      "men_foreigners": 3199,
+      "women_swiss": 3656,
+      "women_foreigners": 279,
+      "age_groups": {
+          "0-19": 184,
+          "20-39": 5759,
+          "40-80+": 5477,
+          "40-64": 4073,
+          "65-79": 990,
+          "80+": 414
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "59,2%",
+          "value": 1761444
+        },
+        {
+          "name": "Paper",
+          "percentage": "20,1%",
+          "value": 597598
+        },
+        {
+          "name": "Glass",
+          "percentage": "15,2%",
+          "value": 451420
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,27%",
+          "value": 8030
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "5,2%",
+          "value": 155906
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Maupas-Valency",
+      "waste_total": 1001411,
+      "waste_per_capita": 73.25,
+      "recyclingEfficiency": 0.54,
+      "recycling_efficiency_per_capita": 0.56,
+      "swiss": 7582,
+      "foreign": 6089,
+      "swiss_percentage": 55.5,
+      "men_swiss": 3439,
+      "men_foreigners": 3219,
+      "women_swiss": 4143,
+      "women_foreigners": 287,
+      "age_groups": {
+          "0-19": 197,
+          "20-39": 5649,
+          "40-80+": 6052,
+          "40-64": 4347,
+          "65-79": 1155,
+          "80+": 550
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "44,4%",
+          "value": 444517
+        },
+        {
+          "name": "Paper",
+          "percentage": "25,2%",
+          "value": 252051
+        },
+        {
+          "name": "Glass",
+          "percentage": "13,0%",
+          "value": 130189
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,22%",
+          "value": 2253
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "17,2%",
+          "value": 172402
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Sébeillon-Malley",
+      "waste_total": 1161321,
+      "waste_per_capita": 98.14,
+      "recyclingEfficiency": 0.37,
+      "recycling_efficiency_per_capita": 0.42,
+      "swiss": 5904,
+      "foreign": 5929,
+      "swiss_percentage": 49.9,
+      "men_swiss": 2824,
+      "men_foreigners": 3156,
+      "women_swiss": 308,
+      "women_foreigners": 2773,
+      "age_groups": {
+          "0-19": 2224,
+          "20-39": 4976,
+          "40-80+": 4633,
+          "40-64": 3351,
+          "65-79": 900,
+          "80+": 382
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "58,1%",
+          "value": 675233
+        },
+        {
+          "name": "Paper",
+          "percentage": "17,2%",
+          "value": 199686
+        },
+        {
+          "name": "Glass",
+          "percentage": "10,9%",
+          "value": 126270
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,18%",
+          "value": 2119
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "13,6%",
+          "value": 158013
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Montoie-Bourdonnette",
+      "waste_total": 754788,
+      "waste_per_capita": 93.80,
+      "recyclingEfficiency": 0.38,
+      "recycling_efficiency_per_capita": 0.42,
+      "swiss": 3809,
+      "foreign": 4238,
+      "swiss_percentage": 47.3,
+      "men_swiss": 1812,
+      "men_foreigners": 214,
+      "women_swiss": 1997,
+      "women_foreigners": 2098,
+      "age_groups": {
+          "0-19": 1858,
+          "20-39": 2935,
+          "40-80+": 3254,
+          "40-64": 2379,
+          "65-79": 662,
+          "80+": 213
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "57,8%",
+          "value": 436634
+        },
+        {
+          "name": "Paper",
+          "percentage": "18,5%",
+          "value": 139775
+        },
+        {
+          "name": "Glass",
+          "percentage": "8,6%",
+          "value": 64890
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,24%",
+          "value": 1804
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "14,8%",
+          "value": 111685
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Montriond-Cour",
+      "waste_total": 859728,
+      "waste_per_capita": 99.51,
+      "recyclingEfficiency": 0.42,
+      "recycling_efficiency_per_capita": 0.48,
+      "swiss": 5184,
+      "foreign": 3456,
+      "swiss_percentage": 60.0,
+      "men_swiss": 237,
+      "men_foreigners": 1819,
+      "women_swiss": 2814,
+      "women_foreigners": 1637,
+      "age_groups": {
+          "0-19": 1523,
+          "20-39": 3159,
+          "40-80+": 3958,
+          "40-64": 2659,
+          "65-79": 888,
+          "80+": 411
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "52,1%",
+          "value": 447811
+        },
+        {
+          "name": "Paper",
+          "percentage": "23,9%",
+          "value": 205267
+        },
+        {
+          "name": "Glass",
+          "percentage": "10,1%",
+          "value": 86684
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,20%",
+          "value": 1709
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "13,8%",
+          "value": 118257
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Sous-Gare-Ouchy",
+      "waste_total": 1024399,
+      "waste_per_capita": 94.24,
+      "recyclingEfficiency": 0.5,
+      "recycling_efficiency_per_capita": 0.55,
+      "swiss": 6822,
+      "foreign": 4048,
+      "swiss_percentage": 62.8,
+      "men_swiss": 3094,
+      "men_foreigners": 2101,
+      "women_swiss": 3728,
+      "women_foreigners": 1947,
+      "age_groups": {
+          "0-19": 173,
+          "20-39": 3842,
+          "40-80+": 5298,
+          "40-64": 3451,
+          "65-79": 1217,
+          "80+": 630
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "44,9%",
+          "value": 460326
+        },
+        {
+          "name": "Paper",
+          "percentage": "26,0%",
+          "value": 266317
+        },
+        {
+          "name": "Glass",
+          "percentage": "17,7%",
+          "value": 181224
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,35%",
+          "value": 3564
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "11,0%",
+          "value": 112969
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Montchoisi",
+      "waste_total": 293175,
+      "waste_per_capita": 77.85,
+      "recyclingEfficiency": 0.44,
+      "recycling_efficiency_per_capita": 0.50,
+      "swiss": 2329,
+      "foreign": 1437,
+      "swiss_percentage": 61.8,
+      "men_swiss": 1029,
+      "men_foreigners": 695,
+      "women_swiss": 13,
+      "women_foreigners": 742,
+      "age_groups": {
+          "0-19": 596,
+          "20-39": 1371,
+          "40-80+": 1799,
+          "40-64": 1204,
+          "65-79": 393,
+          "80+": 202
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "50,0%",
+          "value": 146585
+        },
+        {
+          "name": "Paper",
+          "percentage": "23,1%",
+          "value": 67610
+        },
+        {
+          "name": "Glass",
+          "percentage": "13,4%",
+          "value": 39314
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,25%",
+          "value": 719
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "13,3%",
+          "value": 38947
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Florimont-Chissiez",
+      "waste_total": 425534,
+      "waste_per_capita": 72.83,
+      "recyclingEfficiency": 0.61,
+      "recycling_efficiency_per_capita": 0.55,
+      "swiss": 3538,
+      "foreign": 2305,
+      "swiss_percentage": 60.6,
+      "men_swiss": 1575,
+      "men_foreigners": 1153,
+      "women_swiss": 1963,
+      "women_foreigners": 1152,
+      "age_groups": {
+          "0-19": 1118,
+          "20-39": 1962,
+          "40-80+": 2763,
+          "40-64": 1879,
+          "65-79": 584,
+          "80+": 300
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "44,7%",
+          "value": 190104
+        },
+        {
+          "name": "Paper",
+          "percentage": "26,3%",
+          "value": 111748
+        },
+        {
+          "name": "Glass",
+          "percentage": "10,7%",
+          "value": 45397
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,27%",
+          "value": 1162
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "18,1%",
+          "value": 77123
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Mousquines-Bellevue",
+      "waste_total": 287961,
+      "waste_per_capita": 104.49,
+      "recyclingEfficiency": 0.55,
+      "recycling_efficiency_per_capita": 0.56,
+      "swiss": 1761,
+      "foreign": 995,
+      "swiss_percentage": 63.9,
+      "men_swiss": 818,
+      "men_foreigners": 485,
+      "women_swiss": 943,
+      "women_foreigners": 510,
+      "age_groups": {
+          "0-19": 563,
+          "20-39": 846,
+          "40-80+": 1347,
+          "40-64": 928,
+          "65-79": 278,
+          "80+": 141
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "43,9%",
+          "value": 126271
+        },
+        {
+          "name": "Paper",
+          "percentage": "31,2%",
+          "value": 89712
+        },
+        {
+          "name": "Glass",
+          "percentage": "8,4%",
+          "value": 24257
+        },
+        {
+          "name": "Iron",
+          "percentage": "1,31%",
+          "value": 3771
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "15,3%",
+          "value": 43951
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Vallon-Béthusy",
+      "waste_total": 618905,
+      "waste_per_capita": 94.20,
+      "recyclingEfficiency": 0.42,
+      "recycling_efficiency_per_capita": 0.44,
+      "swiss": 3821,
+      "foreign": 2749,
+      "swiss_percentage": 58.2,
+      "men_swiss": 1682,
+      "men_foreigners": 1401,
+      "women_swiss": 2139,
+      "women_foreigners": 1348,
+      "age_groups": {
+          "0-19": 1067,
+          "20-39": 2833,
+          "40-80+": 2670,
+          "40-64": 1835,
+          "65-79": 550,
+          "80+": 285
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "56,0%",
+          "value": 346338
+        },
+        {
+          "name": "Paper",
+          "percentage": "20,3%",
+          "value": 125761
+        },
+        {
+          "name": "Glass",
+          "percentage": "9,3%",
+          "value": 57715
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,26%",
+          "value": 1597
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "14,1%",
+          "value": 87494
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Chailly-Rovéréaz",
+      "waste_total": 803647,
+      "waste_per_capita": 83.50,
+      "recyclingEfficiency": 0.58,
+      "recycling_efficiency_per_capita": 0.58,
+      "swiss": 6311,
+      "foreign": 3314,
+      "swiss_percentage": 65.6,
+      "men_swiss": 2881,
+      "men_foreigners": 1683,
+      "women_swiss": 343,
+      "women_foreigners": 1631,
+      "age_groups": {
+          "0-19": 1816,
+          "20-39": 2801,
+          "40-80+": 5008,
+          "40-64": 3079,
+          "65-79": 1217,
+          "80+": 712
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "41,5%",
+          "value": 333653
+        },
+        {
+          "name": "Paper",
+          "percentage": "26,2%",
+          "value": 210760
+        },
+        {
+          "name": "Glass",
+          "percentage": "8,9%",
+          "value": 71492
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,26%",
+          "value": 2077
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "23,1%",
+          "value": 185665
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Sallaz-Vennes-Séchaud",
+      "waste_total": 1182038,
+      "waste_per_capita": 72.83,
+      "recyclingEfficiency": 0.71,
+      "recycling_efficiency_per_capita": 0.69,
+      "swiss": 9063,
+      "foreign": 7168,
+      "swiss_percentage": 55.8,
+      "men_swiss": 4227,
+      "men_foreigners": 363,
+      "women_swiss": 4836,
+      "women_foreigners": 3538,
+      "age_groups": {
+          "0-19": 4084,
+          "20-39": 5372,
+          "40-80+": 2383,
+          "40-64": 488,
+          "65-79": 1234,
+          "80+": 661
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "31,5%",
+          "value": 371756
+        },
+        {
+          "name": "Paper",
+          "percentage": "29,2%",
+          "value": 345050
+        },
+        {
+          "name": "Glass",
+          "percentage": "8,9%",
+          "value": 105741
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,25%",
+          "value": 2939
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "30,2%",
+          "value": 356552
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Sauvabelin",
+      "waste_total": 100847,
+      "waste_per_capita": 99.95,
+      "recyclingEfficiency": 0.34,
+      "recycling_efficiency_per_capita": 0.38,
+      "swiss": 486,
+      "foreign": 523,
+      "swiss_percentage": 48.2,
+      "men_swiss": 229,
+      "men_foreigners": 264,
+      "women_swiss": 257,
+      "women_foreigners": 259,
+      "age_groups": {
+          "0-19": 295,
+          "20-39": 298,
+          "40-80+": 416,
+          "40-64": 324,
+          "65-79": 51,
+          "80+": 41
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "61,8%",
+          "value": 62300
+        },
+        {
+          "name": "Paper",
+          "percentage": "9,7%",
+          "value": 9788
+        },
+        {
+          "name": "Glass",
+          "percentage": "6,8%",
+          "value": 6887
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,30%",
+          "value": 299
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "21,4%",
+          "value": 21573
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Borde-Bellevaux",
+      "waste_total": 651529,
+      "waste_per_capita": 66.79,
+      "recyclingEfficiency": 0.51,
+      "recycling_efficiency_per_capita": 0.54,
+      "swiss": 5283,
+      "foreign": 4472,
+      "swiss_percentage": 54.2,
+      "men_swiss": 2427,
+      "men_foreigners": 2314,
+      "women_swiss": 2856,
+      "women_foreigners": 2158,
+      "age_groups": {
+          "0-19": 2086,
+          "20-39": 292,
+          "40-80+": 4749,
+          "40-64": 3154,
+          "65-79": 1057,
+          "80+": 538
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "22,2%",
+          "value": 300630
+        },
+        {
+          "name": "Paper",
+          "percentage": "11,0%",
+          "value": 144657
+        },
+        {
+          "name": "Glass",
+          "percentage": "0,27%",
+          "value": 71420
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,27%",
+          "value": 1769
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "20,4%",
+          "value": 133054
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Vinet-Pontaise",
+      "waste_total": 604273,
+      "waste_per_capita": 81.55,
+      "recyclingEfficiency": 0.55,
+      "recycling_efficiency_per_capita": 0.57,
+      "swiss": 4169,
+      "foreign": 3241,
+      "swiss_percentage": 56.3,
+      "men_swiss": 1897,
+      "men_foreigners": 1702,
+      "women_swiss": 2272,
+      "women_foreigners": 1539,
+      "age_groups": {
+          "0-19": 1029,
+          "20-39": 3123,
+          "40-80+": 3258,
+          "40-64": 2287,
+          "65-79": 657,
+          "80+": 314
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "26,2%",
+          "value": 262026
+        },
+        {
+          "name": "Paper",
+          "percentage": "26,2%",
+          "value": 158327
+        },
+        {
+          "name": "Glass",
+          "percentage": "13,3%",
+          "value": 80578
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,45%",
+          "value": 2739
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "16,6%",
+          "value": 100603
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Bossons-Blécherette",
+      "waste_total": 835132,
+      "waste_per_capita": 90.19,
+      "recyclingEfficiency": 0.44,
+      "recycling_efficiency_per_capita": 0.46,
+      "swiss": 5280,
+      "foreign": 3980,
+      "swiss_percentage": 57.0,
+      "men_swiss": 2417,
+      "men_foreigners": 2033,
+      "women_swiss": 1947,
+      "women_foreigners": 2863,
+      "age_groups": {
+          "0-19": 2279,
+          "20-39": 2827,
+          "40-80+": 4154,
+          "40-64": 2918,
+          "65-79": 809,
+          "80+": 427
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "26,1%",
+          "value": 447306
+        },
+        {
+          "name": "Paper",
+          "percentage": "7,6%",
+          "value": 218010
+        },
+        {
+          "name": "Glass",
+          "percentage": "0,27%",
+          "value": 63239
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,27%",
+          "value": 2231
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "12,5%",
+          "value": 104346
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Beaulieu-Grey-Boisy",
+      "waste_total": 566180,
+      "waste_per_capita": 89.37,
+      "recyclingEfficiency": 0.47,
+      "recycling_efficiency_per_capita": 0.51,
+      "swiss": 4651,
+      "foreign": 1684,
+      "swiss_percentage": 73.4,
+      "men_swiss": 2031,
+      "men_foreigners": 875,
+      "women_swiss": 262,
+      "women_foreigners": 809,
+      "age_groups": {
+          "0-19": 1187,
+          "20-39": 1703,
+          "40-80+": 3445,
+          "40-64": 1917,
+          "65-79": 899,
+          "80+": 629
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "26,7%",
+          "value": 275999
+        },
+        {
+          "name": "Paper",
+          "percentage": "12,4%",
+          "value": 150933
+        },
+        {
+          "name": "Glass",
+          "percentage": "0,22%",
+          "value": 69972
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,22%",
+          "value": 1228
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "12,0%",
+          "value": 68048
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "name": "Zones-Foraines",
+      "waste_total": 310804,
+      "waste_per_capita": 61.12,
+      "recyclingEfficiency": 0.82,
+      "recycling_efficiency_per_capita": 0.79,
+      "swiss": 3106,
+      "foreign": 1979,
+      "swiss_percentage": 61.1,
+      "men_swiss": 1521,
+      "men_foreigners": 966,
+      "women_swiss": 1585,
+      "women_foreigners": 1013,
+      "age_groups": {
+          "0-19": 139,
+          "20-39": 1747,
+          "40-80+": 1948,
+          "40-64": 1418,
+          "65-79": 411,
+          "80+": 119
+      },
+      "children": [
+        {
+          "name": "Non-recyclable",
+          "percentage": "20,7%",
+          "value": 64265
+        },
+        {
+          "name": "Paper",
+          "percentage": "13,7%",
+          "value": 42506
+        },
+        {
+          "name": "Glass",
+          "percentage": "20,9%",
+          "value": 65052
+        },
+        {
+          "name": "Iron",
+          "percentage": "0,38%",
+          "value": 1166
+        },
+        {
+          "name": "Vegetable",
+          "percentage": "44,3%",
+          "value": 137815
+        }
+      ]
+    }
+  ]
+}
