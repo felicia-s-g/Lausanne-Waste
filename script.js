@@ -47,7 +47,7 @@ function highlightDistrict(districtId, highlight = true) {
 
 const opacityScale = d3.scaleLinear()
   .domain([60, 230])          // note: reversed
-  .range([0, 0.8]);
+  .range([0, 0.6]);
 
 
 const populationScale = d3.scaleLinear()
@@ -265,7 +265,7 @@ function zoomTo(v) {
   node.attr("transform", d => `translate(${(d.x - v[0]) * k}, ${(d.y - v[1]) * k - 60})`); // Shift up by 100px
   node.attr("r", d => d.r * k);
 
-  label.attr("transform", d => `translate(${(d.x - v[0]) * k}, ${(d.y - v[1]) * k - d.r * k - 80})`); // Shift labels accordingly
+  label.attr("transform", d => `translate(${(d.x - v[0]) * k}, ${(d.y - v[1]) * k - d.r * k - 70})`); // Shift labels accordingly
 }
 
 function zoom(event, d) {
@@ -329,7 +329,7 @@ function updateCirclePositions() {
         offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
       }
 
-      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1]) - 25})`; // Shift up
+      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1])})`; // Shift up
     });
 
   label.transition()
@@ -344,7 +344,7 @@ function updateCirclePositions() {
         offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
       }
 
-      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1]) - d.r - 40})`; // Shift up
+      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1]) - d.r})`; // Shift up
     });
 }
 
