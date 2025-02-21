@@ -100,7 +100,7 @@ const node = svg.append("g")
     return materialColors[d.data.name] ;
   })
   .attr("stroke", (d) => d.children ? "rgb(0,255,0)" : "none") // Apply stroke only to leaf nodes (outermost circles)
-  .attr("stroke-width", (d) => d.children ? d.data.scaled_rec_efficiency_per_capita / 5 : 0) // Apply stroke only to leaf nodes
+  .attr("stroke-width", (d) => d.children ? d.data.recycling_efficiency_per_capita*3 : 0) // Apply stroke only to leaf nodes
   .attr("pointer-events", function (d) {
     if (focus === root) {
       // When in root view, only districts (depth === 1) have pointer events
@@ -219,10 +219,9 @@ function getTooltipContent(d) {
   if (focus.depth === 0 && d.depth === 1) {
     return `
           <strong>${d.data.name}</strong><br/>
-          Population: ${d.data.swiss + d.data.foreign || "N/A"}<br/>
-          Swiss: ${d.data.swiss || "N/A"}<br/>
-          Non-Swiss: ${d.data.foreign || "N/A"}<br/>
-          Swiss percentage: ${d.data.swiss_percentage || "N/A"} %
+          Swiss people percentage: ${d.data.swiss_percentage || "N/A"}% </br>
+          Waste amount per capita: ${d.data.waste_per_capita || "N/A"} kg<br/>
+          Recycling efficiency per capita: ${parseFloat((d.data.recycling_efficiency_per_capita*100).toFixed(2)) || "N/A"}%<br/>
         `;
   }
 
@@ -230,8 +229,9 @@ function getTooltipContent(d) {
   if (focus.depth === 1 && d.depth === 2) {
     return `
           <strong>${d.data.name}</strong><br/>
-          ${d.data.percentage} <br/>
-          ${d.data.value || "N/A"} kg
+          Total amount: ${d.data.value || "N/A"} kg </br>
+          Percentage of the total: ${d.data.percentage} <br/>
+          
         `;
   }
 
@@ -294,23 +294,8 @@ function zoom(event, d) {
     });
 }
 
-
-
-/*// Create the toggle button in HTML
-const toggleButton = document.createElement("button");
-toggleButton.textContent = "Toggle Population Influence";
-toggleButton.style.position = "absolute";
-toggleButton.style.top = "20px";
-toggleButton.style.left = "20px";
-toggleButton.style.zIndex = "10";
-document.body.appendChild(toggleButton);*/
-
 let moveCircles = false;
 
-/*toggleButton.addEventListener("click", () => {
-  moveCircles = !moveCircles;
-  updateCirclePositions();
-});*/
 const toggleButton = document.getElementById('populationToggle');
 toggleButton.addEventListener("click", function() {
     this.classList.toggle('active');
