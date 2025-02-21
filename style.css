@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Agrandir', sans-serif;
-    text-align: center;
+    text-align: left;
     background-color: #000000;
     margin: 0;
     padding: 0;
@@ -22,6 +22,37 @@ body {
 h1 {
     margin-top: 20px;
 }
+
+h2{
+    color: #FFF;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: "PP Agrandir";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+h4{
+    color: #FFF;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: "PP Agrandir";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.header-container {
+    display: flex;
+    width: 1221px;
+    padding-left: 60px;
+    padding-top: 49px;
+    align-items: center;
+    gap: 36px;
+    flex-shrink: 0;
+}
+
 
 .tooltip {
     position: absolute;
