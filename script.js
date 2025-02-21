@@ -121,13 +121,12 @@ const node = svg.append("g")
       .style("left", event.pageX + 10 + "px")
       .style("top", event.pageY + 10 + "px");
   })
-  .on("mouseout", function () {
+  .on("mouseout", function (event, d) {
     tooltip.style("display", "none");
     // Remove highlight when mouse leaves district
     if (d.depth === 1) {
       highlightDistrict(d.data.id, false);
     }
-
   })
   .on("click", (event, d) => {
     // Zoom logic: Only allow zooming if clicking on a district (depth 1) or material (depth 2)
