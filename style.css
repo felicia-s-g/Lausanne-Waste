@@ -84,8 +84,6 @@ body {
     color: #000000;
 }
 
-
-
 svg {
     display: block;
     width: 100vw;
@@ -109,15 +107,24 @@ g {
     padding-left: 10px;
 }    
 
+/* Legend - Positioned in Bottom Right */
 #legend {
-    width: 20%;
-    height: 20%;
-    background-color: black;
     position: absolute;
-    bottom: 10%; /* Adjust as needed */
-    right: 0; /* Aligns the div to the right side */
-    margin-right: 32px; /* Optional: adds some space from the right edge */
-    pointer-events: none; /* Allows interactions with the SVG below */
+    bottom: 1%;
+    right: 1%;
+}
+
+#sources {
+    position: absolute;
+    text-align: right;
+    top: 20%;
+    right: 2.5%;
+    font-size: 10px;
+    line-height: 150%;
+}
+
+a {
+    color: white;
 }
 
 .flex-bar {
