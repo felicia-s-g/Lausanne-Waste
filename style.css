@@ -118,7 +118,7 @@ g {
     /* background-color: rgb(211, 211, 237);
     opacity: 0.6; */
     position: absolute;
-    top: 30%; /* Adjust as needed */
+    top: 20%; /* Adjust as needed */
     left: 0; /* Aligns the div to the right side */
     margin-left: 20px; /* Optional: adds some space from the right edge */
     pointer-events: none; /* Allows interactions with the SVG below */
@@ -135,7 +135,7 @@ g {
 #sources {
     position: absolute;
     text-align: right;
-    top: 20%;
+    top: 17%;
     right: 1.5%;
     font-size: 10px;
     line-height: 150%;
@@ -221,7 +221,7 @@ th:last-child, td:last-child {
 
 .toggle-wrapper {
     position: absolute;
-    bottom: 210px;
+    bottom: 215px;
     right: 20px;
     display: flex;
     align-items: center;
