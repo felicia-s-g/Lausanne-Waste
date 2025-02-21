@@ -12,37 +12,44 @@
 <body>
     <div class="container">
         
-        <!-- Header Section -->
-        <div class="header">
-            <div class="header-text">
-                <h1>Does being Swiss make you more likely to recycle in Lausanne?</h1>
-                <h2>How does waste management vary across districts when comparing origin, the amount of waste produced, and recycling efficiency per capita in 2023?</h2>
-            </div>
-            <div class="course-info">
-                <h4>Course: Data Driven Design II<br>
-                    Year: 2024-2025 <br>
-                    Faculty: Ginevra Terenghi, Teacher<br>
-                    Antonella Autuori, Teacher<br>
-                    Luca Draisci, Teaching Assistant
-                </h4>
-            </div>
-            <div class="authors">
-                <h4>Authors of the project:<br>
-                    Emma Baumhofer<br>
-                    Luca Ferrari<br>
-                    Felicia Ghercavii<br>
-                    Federico Emanuele Mameo<br>
-                    Antonia Siran
-                </h4>
-            </div>
-        </div>
+<!-- Header Section -->
+<div class="header">
+    <div class="header-title">
+        <h1>Does being Swiss make you more likely to recycle in Lausanne?</h1>
+    </div>
+    <div class="header-divider"></div> <!-- White Vertical Line -->
+    <div class="header-subtitle">
+        <h2>How does waste management vary across districts when comparing origin, the amount of waste produced, and recycling efficiency per capita in 2023?</h2>
+    </div>
+    <div class="header-divider"></div> <!-- White Vertical Line -->
+    <div class="course-info">
+        <h4>Course: Data Driven Design II<br>
+            Year: 2024-2025 <br>
+            Faculty:<br>
+            Ginevra Terenghi, Teacher<br>
+            Antonella Autuori, Teacher<br>
+            Luca Draisci, Teaching Assistant
+        </h4>
+    </div>
+    <div class="header-divider"></div> <!-- White Vertical Line -->
+    <div class="authors">
+        <h4>Authors of the project:<br>
+            Emma Baumhofer<br>
+            Luca Ferrari<br>
+            Felicia Ghercavii<br>
+            Federico Emanuele Mameo<br>
+            Antonia Siran
+        </h4>
+    </div>
+</div>
+
 
         <!-- Main Content Section -->
         <div class="main-content">
 
             <!-- Left Panel (Demographic Section) -->
             <div id="overlay" class="left-panel">
-                <h2>Demographic</h2>
+                <h2>Demographics</h2>
                 <div class="demographic-container">
                     <div id="demog">
                         <!-- Dynamic demographic data from D3.js will populate here -->
@@ -52,7 +59,12 @@
                     </div>
                 </div>
             </div>
-
+            
+            <div id="sources">
+                <h4>Population data source: <a href="https://www.lausanne.ch/officiel/statistique/quartiers/tableaux-donnees.html">City of Lausanne, Statistical Office</a>
+                <br> Waste data source: Bluecity project (2022 - 2026)</h4>
+                </div>
+        
             <!-- Right Panel -->
             <div class="right-panel">
                 <svg id="viz"></svg>
@@ -73,11 +85,6 @@
         <div class="tooltip" id="tooltip"></div>
 
         </div>
-        <div id="sources">
-        <h4>Population data source: <a href="https://www.lausanne.ch/officiel/statistique/quartiers/tableaux-donnees.html">City of Lausanne, Statistical Office</a>
-        <br> Waste data source: Bluecity project (2022 - 2026)</h4>
-        </div>
-
         </div>
     <script type="module" src="script.js" defer></script>
 </body>
