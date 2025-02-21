@@ -106,6 +106,7 @@ g {
     left: 0; /* Aligns the div to the right side */
     margin-left: 20px; /* Optional: adds some space from the right edge */
     pointer-events: none; /* Allows interactions with the SVG below */
+    padding-left: 10px;
 }    
 
 #legend {

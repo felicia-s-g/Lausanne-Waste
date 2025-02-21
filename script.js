@@ -41,8 +41,8 @@ function highlightDistrict(districtId, highlight = true) {
 }
 
 const opacityScale = d3.scaleLinear()
-  .domain([0.82, 0.34])          // note: reversed
-  .range(["#006d2c", "#edf8e9"]);
+  .domain([60, 230])          // note: reversed
+  .range([0, 0.8]);
 
 
 const populationScale = d3.scaleLinear()
@@ -91,12 +91,17 @@ const node = svg.append("g")
   .selectAll("circle")
   .data(root.descendants().slice(1))
   .join("circle")
-  .attr("fill", (d) => materialColors[d.data.name] || "#egegeg")
-  .attr("stroke", (d) => d.children ? "white" : "none") // Apply stroke only to leaf nodes (outermost circles)
-  .attr("stroke-width", (d) => d.children ? d.data.scaled_rec_efficiency_per_capita/7 : 0) // Apply stroke only to leaf nodes
-  .attr("opacity", (d) =>
-    d.depth === 1 ? opacityScale(d.data.recyclingEfficiency || 0.5) : 1
-  )
+  .attr("fill", (d) => {
+    // Check if the node is a district-level (depth === 1)
+    if (d.depth === 1) {
+      // For district-level circles, set the fill to white with transparency based on recyclingEfficiency
+      return `rgba(255,255,255, ${opacityScale(d.data.waste_per_capita)})`;
+    }
+    // Default fill for other levels (use material colors)
+    return materialColors[d.data.name] ;
+  })
+  .attr("stroke", (d) => d.children ? "rgb(0,255,0)" : "none") // Apply stroke only to leaf nodes (outermost circles)
+  .attr("stroke-width", (d) => d.children ? d.data.scaled_rec_efficiency_per_capita / 5 : 0) // Apply stroke only to leaf nodes
   .attr("pointer-events", function (d) {
     if (focus === root) {
       // When in root view, only districts (depth === 1) have pointer events
