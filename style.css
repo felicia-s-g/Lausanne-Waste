@@ -84,8 +84,6 @@ body {
     color: #000000;
 }
 
-
-
 svg {
     display: block;
     width: 100vw;
@@ -112,17 +110,20 @@ g {
 #legend {
     position: absolute;
     bottom: 1%;
-    right: 9%;
-    width: 250px;
-    height: auto;
-    pointer-events: none;
-    padding: 10px;
+    right: 1%;
 }
 
-Ensure the SVG Legend Scales Properly
-#legend svg {
-    width: 200%;
-    height: auto;
+#sources {
+    position: absolute;
+    text-align: right;
+    top: 20%;
+    right: 2.5%;
+    font-size: 10px;
+    line-height: 150%;
+}
+
+a {
+    color: white;
 }
 
 .flex-bar {
