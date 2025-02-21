@@ -132,9 +132,9 @@ g {
 }
 
 #sources {
-    position: absolute;
+    position: relative;
     text-align: right;
-    top: 17%;
+    bottom: 97%;
     right: 1.5%;
     font-size: 10px;
     line-height: 150%;
