@@ -128,18 +128,17 @@ const node = svg.append("g")
 
   });
 
-// text labels
 const label = svg.append("g")
   .style("font", "20px sans-serif")
   .attr("pointer-events", "none")
-  .attr("text-anchor", "middle")
   .selectAll("text")
-  .data(root.descendants())
+  .data(root.descendants().slice(1)) // Exclude root if needed
   .join("text")
+  .attr("text-anchor", "middle") // Center text horizontally
   .style("fill-opacity", d => d.parent === root ? 1 : 0)
   .style("display", d => d.parent === root ? "inline" : "none")
+  .style("fill", "white") // Improve visibility
   .text(d => d.data.name);
-
 
 
 // sidebar helper
@@ -202,13 +201,26 @@ function getTooltipContent(d) {
 svg.on("click", (event) => zoom(event, root));
 zoomTo(view);
 
+// function zoomTo(v) {
+//   const k = width / v[2];
+//   view = v;
+
+//   label.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
+//   node.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
+//   node.attr("r", d => d.r * k);
+// }
+
 function zoomTo(v) {
   const k = width / v[2];
   view = v;
 
-  label.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
   node.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
   node.attr("r", d => d.r * k);
+
+  // Move labels to the top of each circle
+  label.attr("transform", d => 
+    `translate(${(d.x - v[0]) * k}, ${(d.y - v[1]) * k - d.r * k - 10})`
+  );
 }
 
 function zoom(event, d) {
@@ -267,32 +279,47 @@ toggleButton.addEventListener("click", () => {
 });
 
 function updateCirclePositions() {
-  node.transition().duration(500).attr("transform", d => {
-    let parentOffsetX = 0;
-    if (d.parent) {
-      if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
-        parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+  // First, we compute the new radius based on the scale and any layout adjustment
+  node.transition()
+    .duration(d => Math.random() * 1000 + 500) // Random duration between 500ms and 1500ms
+    .delay(d => Math.random() * 500) // Random delay between 0 and 500ms
+    .attr("transform", d => {
+      let parentOffsetX = 0;
+      if (d.parent) {
+        if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
+          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+        }
       }
-    }
-    let offsetX = 0;
-    if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
-      offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
-    }
-    return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1])})`;
-  });
+      let offsetX = 0;
+      if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
+        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
+      }
 
-  label.transition().duration(500).attr("transform", d => {
-    let parentOffsetX = 0;
-    if (d.parent) {
-      if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
-        parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+      // Update radius (r) with padding and move it accordingly
+      let r = d.r;
+      if (moveCircles) {
+        // Recalculate radius based on the new condition (can adjust this further if needed)
+        r = d.r * 1.2; // Example of increasing radius when moveCircles is true
       }
-    }
-    let offsetX = 0;
-    if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
-      offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
-    }
-    return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1])})`;
-  });
+      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1])})`;
+    });
+
+  // Move labels (random duration & delay per label)
+  label.transition()
+    .duration(d => Math.random() * 1000 + 500) // Random duration between 500ms and 1500ms
+    .delay(d => Math.random() * 500) // Random delay between 0 and 500ms
+    .attr("transform", d => {
+      let parentOffsetX = 0;
+      if (d.parent) {
+        if (d.parent.data.swiss !== undefined && d.parent.data.foreign !== undefined) {
+          parentOffsetX = moveCircles ? (d.parent.data.swiss > d.parent.data.foreign ? -400 : 400) : 0;
+        }
+      }
+      let offsetX = 0;
+      if (d.data.swiss !== undefined && d.data.foreign !== undefined) {
+        offsetX = moveCircles ? (d.data.swiss > d.data.foreign ? -400 : 400) : 0;
+      }
+      return `translate(${(d.x - view[0]) + parentOffsetX + offsetX}, ${(d.y - view[1]) - d.r})`;
+    });
 }
 
