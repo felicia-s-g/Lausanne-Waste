@@ -55,7 +55,7 @@ function getDistrict(j) {
   for (const element of j) {
     let ratioPop = populationScale(element.swiss + element.foreign);
     table += `
-      <tr>
+      <tr id="district-row-${element.id}">
           <td>${element.name}</td>
           <td><div class="bar" style="width: ${ratioPop}%;">${element.swiss + element.foreign}</div></td>
       </tr>

@@ -72,7 +72,7 @@ body {
     padding-left: 20px;
 }
 
-/* .tooltip {
+.tooltip {
     position: absolute;
     background: white;
     padding: 8px;
@@ -82,7 +82,7 @@ body {
     display: none;
     pointer-events: none;
     color: #000000;
-} */
+}
 
 
 
@@ -102,7 +102,7 @@ g {
     /* background-color: rgb(211, 211, 237);
     opacity: 0.6; */
     position: absolute;
-    top: 10%; /* Adjust as needed */
+    top: 30%; /* Adjust as needed */
     left: 0; /* Aligns the div to the right side */
     margin-left: 20px; /* Optional: adds some space from the right edge */
     pointer-events: none; /* Allows interactions with the SVG below */
