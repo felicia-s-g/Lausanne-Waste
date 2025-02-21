@@ -183,7 +183,7 @@ const label = svg.append("g")
   .style("fill-opacity", d => d.parent === root ? 1 : 0)
   .style("display", d => d.parent === root ? "inline" : "none")
   .style("fill", "white") // Improve visibility
-  .style("font", d => d.depth === 1 ? "11px 'Agrandir'" : "12px 'Agrandir'")  // Conditional font size based on depth
+  .style("font", d => d.depth === 1 ? "11px 'Agrandir'" : "13px 'Agrandir'")  // Conditional font size based on depth
   .text(d => d.data.name);
 
 
