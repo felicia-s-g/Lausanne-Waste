@@ -108,15 +108,21 @@ g {
     pointer-events: none; /* Allows interactions with the SVG below */
 }    
 
+/* Legend - Positioned in Bottom Right */
 #legend {
-    width: 20%;
-    height: 20%;
-    background-color: black;
     position: absolute;
-    bottom: 10%; /* Adjust as needed */
-    right: 0; /* Aligns the div to the right side */
-    margin-right: 32px; /* Optional: adds some space from the right edge */
-    pointer-events: none; /* Allows interactions with the SVG below */
+    bottom: 1%;
+    right: 9%;
+    width: 250px;
+    height: auto;
+    pointer-events: none;
+    padding: 10px;
+}
+
+Ensure the SVG Legend Scales Properly
+#legend svg {
+    width: 200%;
+    height: auto;
 }
 
 .flex-bar {
