@@ -8,7 +8,7 @@ const svg = d3.select("#viz")
   .attr("viewBox", `0 0 ${width} ${height}`)
   .attr("width", width)
   .attr("height", 900)
-  .attr("style", `max-width: 100%; height: 88%; display: block; margin: auto; background: #000; cursor: pointer;`);
+  .attr("style", `max-width: 100%; height: 100%; display: block; margin: auto; background: #000; cursor: pointer;`);
 
 
 const tooltip = d3.select("#tooltip");
@@ -85,7 +85,7 @@ const root = pack(d3.hierarchy(data)
   .sort((a, b) => b.value - a.value));
 
 focus = root;
-let view = [focus.x, focus.y, focus.r * 4];
+let view = [focus.x, focus.y - 15, focus.r * 4];
 
 const effScale = d3.scaleLinear()
   .domain([0.4, 0.8])          // note: reversed
@@ -288,7 +288,7 @@ function zoom(event, d) {
   const transition = svg.transition()
     .duration(750)
     .tween("zoom", () => {
-      const i = d3.interpolateZoom(view, [focus.x, focus.y - 6, focus.r * 3.8]);
+      const i = d3.interpolateZoom(view, [focus.x, focus.y - 15, focus.r * 4]);
       return t => zoomTo(i(t));
     });
 
