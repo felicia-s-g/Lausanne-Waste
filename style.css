@@ -64,7 +64,15 @@ body {
     line-height: 1.5;
 }
 
-.tooltip {
+/* Course & Author Info */
+.course-info, .authors {
+    text-align: right;
+    font-size: 12px;
+    line-height: 1.5;
+    padding-left: 20px;
+}
+
+/* .tooltip {
     position: absolute;
     background: white;
     padding: 8px;
@@ -74,7 +82,9 @@ body {
     display: none;
     pointer-events: none;
     color: #000000;
-}
+} */
+
+
 
 svg {
     display: block;
