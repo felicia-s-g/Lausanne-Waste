@@ -79,7 +79,7 @@ getDistrict(data.children);
 
 const pack = d3.pack()
   .size([width, height])
-  .padding(d => d.depth === 0 ? 150 : 5)
+  .padding(d => d.depth === 0 ? 120 : 15) // this changes circle padding + inner circle padding
 
 const root = pack(d3.hierarchy(data)
   .sum(d => d.value || d.waste_total)
@@ -88,6 +88,9 @@ const root = pack(d3.hierarchy(data)
 focus = root;
 let view = [focus.x, focus.y, focus.r * 4.2];
 
+const effScale = d3.scaleLinear()
+  .domain([0.4, 0.8])          // note: reversed
+  .range([0, 1]);
 
 // circles
 const node = svg.append("g")
@@ -104,7 +107,7 @@ const node = svg.append("g")
     return materialColors[d.data.name] ;
   })
   .attr("stroke", (d) => d.children ? "rgb(0,255,0)" : "none") // Apply stroke only to leaf nodes (outermost circles)
-  .attr("stroke-width", (d) => d.children ? d.data.recycling_efficiency_per_capita*4 : 0) // Apply stroke only to leaf nodes
+  .attr("stroke-width", (d) => d.children ? effScale(d.data.recycling_efficiency_per_capita)*3 : 0) // Apply stroke only to leaf nodes
   .attr("pointer-events", function (d) {
     if (focus === root) {
       // When in root view, only districts (depth === 1) have pointer events
@@ -178,7 +181,7 @@ const label = svg.append("g")
   .style("fill-opacity", d => d.parent === root ? 1 : 0)
   .style("display", d => d.parent === root ? "inline" : "none")
   .style("fill", "white") // Improve visibility
-  .style("font", d => d.depth === 1 ? "10px sans-serif" : "20px sans-serif")  // Conditional font size based on depth
+  .style("font", d => d.depth === 1 ? "11px 'Agrandir'" : "12px 'Agrandir'")  // Conditional font size based on depth
   .text(d => d.data.name);
 
 
