@@ -83,8 +83,6 @@ focus = root;
 let view = [focus.x, focus.y, focus.r * 4.2];
 
 
-
-
 // circles
 const node = svg.append("g")
   .selectAll("circle")
