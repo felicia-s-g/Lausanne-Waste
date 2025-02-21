@@ -59,13 +59,18 @@ function getDistrict(j) {
     let ratioPop = populationScale(element.swiss + element.foreign);
     table += `
       <tr id="district-row-${element.id}">
-          <td>${element.name}</td>
-          <td><div class="bar" style="width: ${ratioPop}%;">${element.swiss + element.foreign}</div></td>
+          <td>
+              <div class="district-name">${element.name}</div>
+              <div class="bar-wrapper" style="display: flex; align-items: center;">
+                  <div class="bar" style="width: ${ratioPop}%;">&nbsp;</div>
+                  <div class="population" style="margin-left: 10px;">${element.swiss + element.foreign}</div>
+              </div>
+          </td>
       </tr>
-    `
+    `;
 
     labels += `<li>${element.name}</li>`;
-    population += ` <div class="bar" style="width: 90%;">${element.swiss + element.foreign}</div>`
+    population += `<div class="bar" style="width: 80%;">${element.swiss + element.foreign}</div>`;
   }
 }
 
@@ -86,8 +91,6 @@ focus = root;
 let view = [focus.x, focus.y, focus.r * 4.2];
 
 
-
-
 // circles
 const node = svg.append("g")
   .selectAll("circle")
@@ -102,7 +105,7 @@ const node = svg.append("g")
     // Default fill for other levels (use material colors)
     return materialColors[d.data.name] ;
   })
-  .attr("stroke", (d) => d.children ? "rgb(0,255,0)" : "none") // Apply stroke only to leaf nodes (outermost circles)
+  .attr("stroke", (d) => d.children ? "rgb(255,255,255)" : "none") // Apply stroke only to leaf nodes (outermost circles)
   .attr("stroke-width", (d) => d.children ? d.data.scaled_rec_efficiency_per_capita / 5 : 0) // Apply stroke only to leaf nodes
   .attr("pointer-events", function (d) {
     if (focus === root) {
